@@ -119,6 +119,7 @@ export default function PaginaInicial() {
                         <Button
                             type='submit'
                             label='login'
+                            disabled={username.length < 3}
                             fullWidth
                             buttonColors={{
                                 contrastColor: appConfig.theme.colors.neutrals["100"],
@@ -153,6 +154,7 @@ export default function PaginaInicial() {
                                 marginBottom: '20px',
                             }}
                             src={`https://github.com/${username}.png`}
+                            alt="Photo"
                         />
                         <Text
                             variant="body4"
