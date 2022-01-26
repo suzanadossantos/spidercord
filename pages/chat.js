@@ -21,11 +21,19 @@ export default function ChatPage() {
     // lista de mensagens */
 
     function handleNovaMensagem(novaMensagem) {
+        const mensagem = {
+            id: listaDeMensagens.length + 1,
+            de: 'SuzanadosSantos',
+            texto: novaMensagem,
+        };
+
+        // Chamada de um backend
+
         setListaDeMensagens([
-             ...listaDeMensagens,
-             novaMensagem,
-         ]);
-         setMensagem('');
+            mensagem,
+            ...listaDeMensagens,
+        ]);
+        setMensagem('');
     }
 
     return (
@@ -64,15 +72,14 @@ export default function ChatPage() {
                         padding: '16px',
                     }}
                 >
-                    <MessageList/>
-                    {listaDeMensagens.map((mensagemAtual) => {
-                        console.log(mensagemAtual)
+                    <MessageList mensagens={listaDeMensagens} />
+                    {/* {listaDeMensagens.map((mensagemAtual) => {
                         return (
-                            <li>
-                                {mensagemAtual}
+                            <li key={mensagemAtual.id}>
+                                {mensagemAtual.de}:{mensagemAtual.texto}
                             </li>
                         )
-                    })}
+                    })}*/}
                     <Box
                         as="form"
                         styleSheet={{
@@ -87,11 +94,11 @@ export default function ChatPage() {
                                 const valor = event.target.value;
                                 setMensagem(valor);
                             }}
-                            onKeyPress={ (event) => {
-                                if(event.key === "Enter"){
+                            onKeyPress={(event) => {
+                                if (event.key === "Enter") {
                                     event.preventDefault();
-                                    
-                                    handleNovaMensagem();
+
+                                    handleNovaMensagem(mensagem);
                                 }
                             }}
                             placeholder="Insira sua mensagem aqui..."
@@ -132,7 +139,8 @@ function Header() {
     )
 }
 
-function MessageList () {
+function MessageList(props) {
+    console.log(props.listaDeMensagens);
     return (
         <Box
             tag="ul"
@@ -145,49 +153,53 @@ function MessageList () {
                 marginBottom: '16px',
             }}
         >
-
-            <Text
-                tag="li"
-                styleSheet={{
-                    borderRadius: '5px',
-                    padding: '6px',
-                    marginBottom: '12px',
-                    hover: {
-                        backgroundColor: appConfig.theme.colors.neutrals[700],
-                    }
-                }}
-            >
-                <Box
-                    styleSheet={{
-                        marginBottom: '8px',
-                    }}
-                >
-                    <Image
-                        styleSheet={{
-                            width: '20px',
-                            height: '20px',
-                            borderRadius: '50%',
-                            display: 'inline-block',
-                            marginRight: '8px',
-                        }}
-                        src={`https://github.com/vanessametonini.png`}
-                    />
-                    <Text tag="strong">
-                        vanessametonini
-                    </Text>
+            {props.mensagens.map((mensagem) => {
+                return (
                     <Text
+                        key={mensagem.id}
+                        tag="li"
                         styleSheet={{
-                            fontSize: '10px',
-                            marginLeft: '8px',
-                            color: appConfig.theme.colors.neutrals[300],
+                            borderRadius: '5px',
+                            padding: '6px',
+                            marginBottom: '12px',
+                            hover: {
+                                backgroundColor: appConfig.theme.colors.neutrals[700],
+                            }
                         }}
-                        tag="span"
                     >
-                        {(new Date().toLocaleDateString())}
+                        <Box
+                            styleSheet={{
+                                marginBottom: '8px',
+                            }}
+                        >
+                            <Image
+                                styleSheet={{
+                                    width: '20px',
+                                    height: '20px',
+                                    borderRadius: '50%',
+                                    display: 'inline-block',
+                                    marginRight: '8px',
+                                }}
+                                src={`https://github.com/vanessametonini.png`}
+                            />
+                            <Text tag="strong">
+                                {mensagem.de}
+                            </Text>
+                            <Text
+                                styleSheet={{
+                                    fontSize: '10px',
+                                    marginLeft: '8px',
+                                    color: appConfig.theme.colors.neutrals[300],
+                                }}
+                                tag="span"
+                            >
+                                {(new Date().toLocaleDateString())}
+                            </Text>
+                        </Box>
+                        {mensagem.texto}
                     </Text>
-                </Box>
-                Mensagem...
-            </Text>
+                );
+            })}
         </Box>
     )
 }
