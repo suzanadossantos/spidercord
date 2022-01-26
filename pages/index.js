@@ -140,7 +140,7 @@ export default function PaginaInicial() {
                             alignItems: 'center',
                             maxWidth: '200px',
                             padding: '16px',
-                            backgroundColor: appConfig.theme.colors.neutrals[600],
+                            backgroundColor: appConfig.theme.colors.neutrals[100],
                             border: '3px solid',
                             borderColor: appConfig.theme.colors.neutrals[999],
                             borderRadius: '10px',

@@ -52,7 +52,7 @@ export default function ChatPage() {
                     flex: 1,
                     boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
                     borderRadius: '5px',
-                    backgroundColor: appConfig.theme.colors.neutrals[700],
+                    backgroundColor: appConfig.theme.colors.neutrals[800],
                     height: '100%',
                     maxWidth: '95%',
                     maxHeight: '95vh',
@@ -66,13 +66,13 @@ export default function ChatPage() {
                         display: 'flex',
                         flex: 1,
                         height: '80%',
-                        backgroundColor: appConfig.theme.colors.neutrals[600],
+                        backgroundColor: appConfig.theme.colors.neutrals[100],
                         flexDirection: 'column',
                         borderRadius: '5px',
                         padding: '16px',
                     }}
                 >
-                    <MessageList mensagens={listaDeMensagens} />
+                    <MessageList mensagens={listaDeMensagens}/>
                     {/* {listaDeMensagens.map((mensagemAtual) => {
                         return (
                             <li key={mensagemAtual.id}>
@@ -113,6 +113,29 @@ export default function ChatPage() {
                                 marginRight: '12px',
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
+
+                           
+                        /> 
+                        <Button
+                            onClick={() => handleNovaMensagem(mensagem)}
+                            label='Enviar'
+                            styleSheet={{
+                                width: '20%',
+                                border: '0',
+                                resize: 'none',
+                                borderRadius: '5px',
+                                padding: '6px 8px',
+                                backgroundColor: appConfig.theme.colors.neutrals[500],
+                                marginRight: '12px',
+                                color: appConfig.theme.colors.neutrals[100]
+                            }}
+                            onKeyPress={(event) => {
+                                if (event.key === "Enviar") {
+                                    event.preventDefault();
+
+                                    handleNovaMensagem(mensagem);
+                                }
+                            }}
                         />
                     </Box>
                 </Box>
@@ -126,9 +149,12 @@ function Header() {
         <>
             <Box styleSheet={{ width: '100%', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
                 <Text variant='heading5'>
-                    Chat
+                    Chat - Digitando...
                 </Text>
                 <Button
+                styleSheet={{
+                    color: appConfig.theme.colors.neutrals[100],
+                }}
                     variant='tertiary'
                     colorVariant='neutral'
                     label='Logout'
@@ -149,7 +175,7 @@ function MessageList(props) {
                 display: 'flex',
                 flexDirection: 'column-reverse',
                 flex: 1,
-                color: appConfig.theme.colors.neutrals["000"],
+                color: appConfig.theme.colors.neutrals["900"],
                 marginBottom: '16px',
             }}
         >
@@ -163,7 +189,7 @@ function MessageList(props) {
                             padding: '6px',
                             marginBottom: '12px',
                             hover: {
-                                backgroundColor: appConfig.theme.colors.neutrals[700],
+                                backgroundColor: appConfig.theme.colors.neutrals[300],
                             }
                         }}
                     >
@@ -180,7 +206,7 @@ function MessageList(props) {
                                     display: 'inline-block',
                                     marginRight: '8px',
                                 }}
-                                src={`https://github.com/vanessametonini.png`}
+                                src={`https://github.com/SuzanadosSantos.png`}
                             />
                             <Text tag="strong">
                                 {mensagem.de}
@@ -189,7 +215,7 @@ function MessageList(props) {
                                 styleSheet={{
                                     fontSize: '10px',
                                     marginLeft: '8px',
-                                    color: appConfig.theme.colors.neutrals[300],
+                                    color: appConfig.theme.colors.neutrals[600],
                                 }}
                                 tag="span"
                             >
