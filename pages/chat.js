@@ -4,12 +4,13 @@ import appConfig from '../config.json';
 
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
+    const [listaDeMensagens, setListaDeMensagens] = React.useState([]);
 
     // Sua lógica vai aqui
 
     // ./Sua lógica vai aqui
 
-    // Usuário
+    /* Usuário
 
     // usuário aperta enter para enviar
     // tem que adicionar o texto na listagem 
@@ -17,7 +18,15 @@ export default function ChatPage() {
     // Dev
 
     // usar o onChange, useState
-    // lista de mensagens
+    // lista de mensagens */
+
+    function handleNovaMensagem(novaMensagem) {
+        setListaDeMensagens([
+             ...listaDeMensagens,
+             novaMensagem,
+         ]);
+         setMensagem('');
+    }
 
     return (
         <Box
@@ -56,7 +65,14 @@ export default function ChatPage() {
                     }}
                 >
                     <MessageList/>
- 
+                    {listaDeMensagens.map((mensagemAtual) => {
+                        console.log(mensagemAtual)
+                        return (
+                            <li>
+                                {mensagemAtual}
+                            </li>
+                        )
+                    })}
                     <Box
                         as="form"
                         styleSheet={{
@@ -70,6 +86,13 @@ export default function ChatPage() {
                                 console.log(event);
                                 const valor = event.target.value;
                                 setMensagem(valor);
+                            }}
+                            onKeyPress={ (event) => {
+                                if(event.key === "Enter"){
+                                    event.preventDefault();
+                                    
+                                    handleNovaMensagem();
+                                }
                             }}
                             placeholder="Insira sua mensagem aqui..."
                             type="textarea"
