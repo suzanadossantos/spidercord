@@ -110,7 +110,12 @@ export default function ChatPage() {
                         backgroundColor: appConfig.theme.colors.neutrals[100],
                         flexDirection: 'column',
                         borderRadius: '5px',
-                        padding: '16px',
+                        padding: '16px', 
+                        backgroundImage: "url(https://us.123rf.com/450wm/ankomando/ankomando1610/ankomando161000198/66674310-download-sign-load-icon-load-system-data-load-loading-bar-.jpg?ver=6)",
+                        backgroundRepeat: 'no-repeat', 
+                        backgroundSize: '30px', 
+                        backgroundBlendMode: 'multiply',
+                        backgroundPosition: 'top right'
                     }}
                 >
                     <MessageList mensagens={listaDeMensagens}/>
@@ -138,7 +143,6 @@ export default function ChatPage() {
                             onKeyPress={(event) => {
                                 if (event.key === "Enter") {
                                     event.preventDefault();
-
                                     handleNovaMensagem(mensagem);
                                 }
                             }}
@@ -150,12 +154,10 @@ export default function ChatPage() {
                                 resize: 'none',
                                 borderRadius: '5px',
                                 padding: '6px 8px',
-                                backgroundColor: appConfig.theme.colors.neutrals[800],
+                                backgroundColor: appConfig.theme.colors.neutrals[700],
                                 marginRight: '12px',
-                                color: appConfig.theme.colors.neutrals[200],
+                                color: appConfig.theme.colors.neutrals[200]
                             }}
-
-                           
                         /> 
                         <Button
                             onClick={() => handleNovaMensagem(mensagem)}
