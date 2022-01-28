@@ -70,7 +70,7 @@ export default function PaginaInicial() {
                         onSubmit={function (infosDoEvento){
                             infosDoEvento.preventDefault();
                             console.log("Alguém submeteu o form")
-                            roteamento.push('/chat')
+                            roteamento.push(`/chat?username=${username}`);
                             //window.location.href= '/chat';
                         }}
                         styleSheet={{
@@ -96,7 +96,7 @@ export default function PaginaInicial() {
                         }}
                     />*/}
 
-                        <TextField
+                        <TextField 
                         value={username}
                          onChange={function (event){
                             console.log('usuario digitou', event.target.value);
