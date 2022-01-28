@@ -8,7 +8,7 @@ export function ButtonSendSticker(props) {
     return (
         <Box
             styleSheet={{
-                position: 'relative',
+                position: 'relative'
             }}
         >
             {/* Botão de Sticker/GIF */}
