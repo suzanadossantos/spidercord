@@ -1,6 +1,6 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import React from 'react';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import appConfig from '../config.json';
 
 function Titulo(props) {
@@ -67,7 +67,7 @@ export default function PaginaInicial() {
                     {/* Formulário */}
                     <Box
                         as="form"
-                        onSubmit={function (infosDoEvento){
+                        onSubmit={function (infosDoEvento) {
                             infosDoEvento.preventDefault();
                             console.log("Alguém submeteu o form")
                             roteamento.push(`/chat?username=${username}`);
@@ -96,16 +96,16 @@ export default function PaginaInicial() {
                         }}
                     />*/}
 
-                        <TextField 
-                        value={username}
-                         onChange={function (event){
-                            console.log('usuario digitou', event.target.value);
-                            //Onde ta o valor?
-                            const valor = event.target.value;
-                            //Trocar o valor da variavel
-                            //através do React
-                            setUsername(valor);
-                        }}
+                        <TextField
+                            value={username}
+                            onChange={function (event) {
+                                console.log('usuario digitou', event.target.value);
+                                //Onde ta o valor?
+                                const valor = event.target.value;
+                                //Trocar o valor da variavel
+                                //através do React
+                                setUsername(valor);
+                            }}
                             fullWidth
                             textFieldColors={{
                                 neutral: {

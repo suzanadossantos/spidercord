@@ -1,15 +1,15 @@
 import { Box, Text, TextField, Image, Button } from '@skynexui/components';
 import React from 'react';
 import appConfig from '../config.json';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import { createClient } from '@supabase/supabase-js';
-import { ButtonSendSticker } from '..src/components/ButtonSendSticker';
+import { ButtonSendSticker } from '../src/components/ButtonSendSticker';
 
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzI4MTk5MSwiZXhwIjoxOTU4ODU3OTkxfQ.hk-5XSuDo7tbR1VOFyzRG5Dn0wt7Sp2McXInQlsJeRQ";
 const SUPABASE_URL = "https://wbjmnmieemlglmfxveph.supabase.co";
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-function escutaMensagensEmTempoReal(adicionaMensagem){
+function escutaMensagensEmTempoReal(adicionaMensagem) {
     return supabaseClient
         .from('mensagens')
         .on('INSERT', (respostaLive) => {
@@ -21,19 +21,19 @@ function escutaMensagensEmTempoReal(adicionaMensagem){
 export default function ChatPage() {
     const roteamento = useRouter();
     const usuarioLogado = roteamento.query.username;
-    console.log('roteamento.query',roteamento.query);
+    console.log('roteamento.query', roteamento.query);
     console.log('usuarioLogado', usuarioLogado);
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaDeMensagens] = React.useState([
-        
+
     ]);
 
-    React.useEffect(() =>{
+    React.useEffect(() => {
         supabaseClient
             .from('mensagens')
             .select('*')
-            .order('id', { ascending: false})
-            .then(({data}) => {
+            .order('id', { ascending: false })
+            .then(({ data }) => {
                 //console.log('Dados da consulta:', data);
                 setListaDeMensagens(data);
             });
@@ -78,9 +78,9 @@ export default function ChatPage() {
                 // Tem que ser um objeto com os MESMOS CAMPOS que você escreveu no supabase
                 mensagem
             ])
-            .then(({data}) => {
+            .then(({ data }) => {
                 console.log('Criando Mensagem: ', data);
-           });
+            });
 
         setMensagem('');
     }
@@ -118,15 +118,15 @@ export default function ChatPage() {
                         backgroundColor: appConfig.theme.colors.neutrals[100],
                         flexDirection: 'column',
                         borderRadius: '5px',
-                        padding: '16px', 
+                        padding: '16px',
                         backgroundImage: "url(https://us.123rf.com/450wm/ankomando/ankomando1610/ankomando161000198/66674310-download-sign-load-icon-load-system-data-load-loading-bar-.jpg?ver=6)",
-                        backgroundRepeat: 'no-repeat', 
-                        backgroundSize: '30px', 
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: '30px',
                         backgroundBlendMode: 'multiply',
                         backgroundPosition: 'top right'
                     }}
                 >
-                    <MessageList mensagens={listaDeMensagens}/>
+                    <MessageList mensagens={listaDeMensagens} />
                     {/* {listaDeMensagens.map((mensagemAtual) => {
                         return (
                             <li key={mensagemAtual.id}>
@@ -138,7 +138,7 @@ export default function ChatPage() {
                         as="form"
                         styleSheet={{
                             display: 'flex',
-                            alignItems: 'center',
+                            alignItems: 'center'
                         }}
                     >
                         <TextField
@@ -166,19 +166,25 @@ export default function ChatPage() {
                                 marginRight: '12px',
                                 color: appConfig.theme.colors.neutrals[200]
                             }}
-                        /> 
+                        />
                         {/* CallBack */}
                         <ButtonSendSticker
-                            onStickerClick={(sticker) =>{
+                            onStickerClick={(sticker) => {
                                 //console.log(' [Usando o Componente] Salva esse sticker no banco', sticker);
                                 handleNovaMensagem(':sticker: ' + sticker);
                             }}
                         />
+                        {/* Botão de enviar(ok) */}
                         <Button
                             onClick={() => handleNovaMensagem(mensagem)}
-                            label='Enviar'
+                            label='Ok'
                             styleSheet={{
-                                width: '20%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                margin: '15px',
+                                marginBottom: '20px',
+                                width: '15%',
                                 border: '0',
                                 resize: 'none',
                                 borderRadius: '5px',
@@ -210,9 +216,9 @@ function Header() {
                     Chat - Digitando...
                 </Text>
                 <Button
-                styleSheet={{
-                    color: appConfig.theme.colors.neutrals[100],
-                }}
+                    styleSheet={{
+                        color: appConfig.theme.colors.neutrals[100],
+                    }}
                     variant='tertiary'
                     colorVariant='neutral'
                     label='Logout'
@@ -282,14 +288,14 @@ function MessageList(props) {
                         </Box>
                         {/* Declarativo */}
                         {/*Condicional: {mensagem.texto.startsWith(':sticker:').toString()}*/}
-                        {mensagem.texto.startsWith(':sticker:') 
-                        ? (
-                            <Image src={mensagem.texto.replace(':sticker:', '')} />
-                        )
-                        : (
-                            mensagem.texto
-                        )}
-                        
+                        {mensagem.texto.startsWith(':sticker:')
+                            ? (
+                                <Image src={mensagem.texto.replace(':sticker:', '')} />
+                            )
+                            : (
+                                mensagem.texto
+                            )}
+
                     </Text>
                 );
             })}
