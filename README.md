@@ -6,7 +6,13 @@ Spidercord foi criado através dos conhecimentos adquiridos pela Imersão React 
 
 ### Imagens
 
+#### Tela de Login
 
+![Thumbnail:](https://github.com/suzanadossantos/spidercord/blob/main/imagens_projeto/imagem1.png)
+
+#### Tela do chat
+
+![Thumbnail:](https://github.com/suzanadossantos/spidercord/blob/main/imagens_projeto/imagem2.png)
 
 ### Ferramentas
  
