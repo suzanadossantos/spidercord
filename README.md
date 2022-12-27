@@ -1,10 +1,10 @@
 # Spidercord 🕸️
  
-### Criação
+### Criação 👧🏻
  
 Spidercord foi criado através dos conhecimentos adquiridos pela Imersão React 4 da @Alura com @omariosouto e @peas
 
-### Imagens
+### Imagens 🖼️
 
 #### Tela de Login
 
@@ -14,7 +14,7 @@ Spidercord foi criado através dos conhecimentos adquiridos pela Imersão React 
 
 ![Thumbnail:](https://github.com/suzanadossantos/spidercord/blob/main/imagens_projeto/imagem2.png)
 
-### Ferramentas
+### Tecnologias e ferramentas 🛠️
  
 - React 
 - Next.js
@@ -25,18 +25,18 @@ Spidercord foi criado através dos conhecimentos adquiridos pela Imersão React 
 - JavaScript
 - Vercel
 
-### Funcionalidades
+### Funcionalidades ✨
 
 - Chat em tempo real
 - Stickers
 - Login com seu usuário GitHub
 
-### Mais informações
+### Mais informações...
 
 - Esse foi meu primeiro contato com o React
 - A comunidade criada pela @Alura para a imersão me ajudou muito para modificar o projeto como eu gostaria 
 
-### Links
+### Links 🔗
 
 - 🔗 Link do projeto: https://spidercord.vercel.app/ 
 
